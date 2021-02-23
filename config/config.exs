@@ -18,6 +18,12 @@ config :rocketpay, RocketpayWeb.Endpoint,
   pubsub_server: Rocketpay.PubSub,
   live_view: [signing_salt: "vv83E2BD"]
 
+# Configuração do tipo de id no banco de dados para ser UUID
+# fala pro ecto que toda a tabela que criar, use binary_id
+config :rocketpay, Rocketpay.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
