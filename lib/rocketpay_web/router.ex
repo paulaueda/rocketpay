@@ -10,6 +10,8 @@ defmodule RocketpayWeb.Router do
 
     # Pela URL recebemos o nome do arquivo
     get "/:filename", WelcomeController, :index
+
+    post "/users", UsersController, :create
   end
 
   # Enables LiveDashboard only for development
