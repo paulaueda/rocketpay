@@ -8,8 +8,8 @@ defmodule RocketpayWeb.Router do
   scope "/api", RocketpayWeb do
     pipe_through :api
 
-    # No barra api, metodo get
-    get "/", WelcomeController, :index
+    # Pela URL recebemos o nome do arquivo
+    get "/:filename", WelcomeController, :index
   end
 
   # Enables LiveDashboard only for development
