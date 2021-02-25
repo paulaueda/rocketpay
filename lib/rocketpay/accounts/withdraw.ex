@@ -13,7 +13,7 @@ defmodule Rocketpay.Accounts.Withdraw do
     # outra forma de fazer pattern match: case
     case Repo.transaction(multi) do
       {:error, _operation, reason, _changes} -> {:error, reason}
-      {:ok, %{update_balance: account}} -> {:ok, account}
+      {:ok, %{account_withdraw: account}} -> {:ok, account}
     end
   end
 
