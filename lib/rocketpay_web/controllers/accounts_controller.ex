@@ -26,7 +26,13 @@ defmodule RocketpayWeb.AccountsController do
 
   def transaction(conn, params) do
 
-    with {:ok, %TransactionResponse{} = transaction} <- Rocketpay.transaction(params) do
+    # cria task concorrente
+    task = Task.async(fn -> Rocketpay.transaction(params) end)
+
+    # Quando eu nao me preocupo com o retorno (envio de email por ex)
+    # Task.start(...)
+
+    with {:ok, %TransactionResponse{} = transaction} <- Task.await(task) do
       conn
       |> put_status(:ok)
       |> render("transaction.json", transaction: transaction)
